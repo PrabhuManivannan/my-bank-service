@@ -14,15 +14,15 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build registry + "latest"
+          dockerImage = docker.build("prabhu25/my-bank-service")
         }
       }
     }
     stage('Deploy Image') {
       steps{
         script {
-          docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
+          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+            dockerImage.push('latest')
           }
         }
       }
