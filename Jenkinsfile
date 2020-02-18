@@ -20,7 +20,7 @@ pipeline {
     stage('Docker Push') {
       agent any
       steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'Docker@25', usernameVariable: 'prabhu25')]) {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'Docker@25', usernameVariable: 'prabhu25')]) {
           sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
           sh 'docker push prabhu25/my-bank-service:latest'
         }
