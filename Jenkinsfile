@@ -6,12 +6,12 @@ pipeline {
   }
   agent any
   stages {
-    stage('Cloning Git') {
+    stage('Bank Service Clone') {
       steps {
         git 'https://github.com/PrabhuManivannan/my-bank-service.git'
       }
     }
-    stage('Building image') {
+    stage('Bank Service Build Image') {
       steps{
         script {
         sh 'chmod 666 /var/run/docker.sock'
@@ -19,7 +19,7 @@ pipeline {
         }
       }
     }
-    stage('Deploy Image') {
+    stage('Bank Service Push Image') {
       steps{
         script {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
