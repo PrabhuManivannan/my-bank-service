@@ -14,6 +14,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
+        sh("sudo chmod 666 /var/run/docker.sock")
           dockerImage = docker.build("prabhu25/my-bank-service")
         }
       }
