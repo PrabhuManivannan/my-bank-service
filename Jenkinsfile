@@ -1,29 +1,35 @@
 pipeline {
-  agent none
+  environment {
+    registry = "prabhu25/my-bank-service"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+  }
+  agent any
   stages {
-    stage('Maven Install') {
-      agent {
-        docker {
-          image 'maven:3.5.0'
-        }
-      }
+    stage('Cloning Git') {
       steps {
-        sh 'mvn clean install'
+        git 'https://github.com/gustavoapolinario/microservices-node-example-todo-frontend.git'
       }
     }
-    stage('Docker Build') {
-      agent any
-      steps {
-        sh 'docker build -t prabhu25/my-bank-service:latest .'
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + "latest"
+        }
       }
     }
-    stage('Docker Push') {
-      agent any
-      steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'Docker@25', usernameVariable: 'prabhu25')]) {
-          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-          sh 'docker push prabhu25/my-bank-service:latest'
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
         }
+      }
+    }
+    stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $registry:latest"
       }
     }
   }
