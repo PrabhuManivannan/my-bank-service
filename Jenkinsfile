@@ -5,7 +5,7 @@ pipeline {
 	    registry = "prabhu25/my-bank-service"
 	    registryCredential = 'dockerhub'
 	    dockerImage = ''
-            CURRENT_TIMESTAMP= ${BUILD_TIMESTAMP}
+            CURRENT_TIMESTAMP= "${BUILD_TIMESTAMP}"
 	  }
  
   stages {
