@@ -37,12 +37,7 @@ pipeline {
       }
     }
 
-    stage('Remove Unused docker image') {
-      steps{
-        sh "docker rmi $registry:SNAPSHOT-0.0.$BUILD_NUMBER"
-      }
-    }
-
+   
     
    }
 }
