@@ -15,7 +15,6 @@ pipeline {
     }
     stage('Build') {
        steps {
-	   sh 'pwd'    
            sh 'mvn clean install -DskipTests=true'
 
          }
@@ -37,10 +36,17 @@ pipeline {
         }
       }
     }
+
     stage('Remove Unused docker image') {
       steps{
         sh "docker rmi $registry:latest"
       }
     }
-  }
+
+    stage('Deploy To K8s') {
+          steps{
+            sh "kubectl deploy -f /var/lib/jenkins/workspace/my-bank-service_master/deploy.yaml"
+          }
+     }
+   }
 }
