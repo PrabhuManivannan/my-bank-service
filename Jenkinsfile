@@ -15,6 +15,7 @@ pipeline {
     }
     stage('Build') {
        steps {
+	   sh 'pwd'    
            sh 'mvn clean install -DskipTests=true'
 
          }
