@@ -22,7 +22,7 @@ pipeline {
     stage('Bank Service Build Image') {
       steps{
         script {
-        sh 'chmod 666 /var/run/docker.sock'
+      
           dockerImage = docker.build("prabhu25/my-bank-service")
         }
       }
