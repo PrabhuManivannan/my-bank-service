@@ -45,7 +45,7 @@ pipeline {
 
     stage('Deploy To K8s') {
           steps{
-            sh "kubectl deploy -f /var/lib/jenkins/workspace/my-bank-service_master/deploy.yaml"
+            sh "kubectl apply -f /var/lib/jenkins/workspace/my-bank-service_master/deploy.yaml"
           }
      }
    }
