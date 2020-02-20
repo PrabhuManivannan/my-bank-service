@@ -56,7 +56,7 @@ public class BankEmployeeController {
 		log.debug("transactionID  is -> {}  ", transactionID);
 
 		response.setEmpId("1234");
-		response.setEmailId("xyz1@domain.com");
+		response.setEmailId("xyz_12@domain.com");
 		response.setFullName("Prabhu M");
 		response.setMobileNumber("989898989898");
 		users.add(response);
