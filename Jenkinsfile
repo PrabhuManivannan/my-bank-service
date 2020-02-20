@@ -62,7 +62,7 @@ pipeline {
 	env.DEPLOY_SUCCESS = input message: 'User input required', ok: 'OK!',
         parameters: [choice(name: 'DEPLOY_SUCCESS', choices: 'Yes\nNo', description: 'Is Deployment Success')]
 	if(env.DEPLOY_SUCCESS == 'YES'){
-		sh 'kubectl set image deployment/ctsops ctsops=prabhu25/my-bank-service:${CURRENT_TIMESTAMP}'		   
+		sh 'kubectl set image deployment/ctsops ctsops=prabhu25/my-bank-service:$CURRENT_TIMESTAMP'		   
 	}
       }
     }
