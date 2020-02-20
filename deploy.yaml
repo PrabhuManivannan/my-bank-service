@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: ctsops
-        image: prabhu25/my-bank-service:${tag}
+        image: prabhu25/my-bank-service:^{tag}
         ports:
         - containerPort: 80
