@@ -32,7 +32,7 @@ pipeline {
       steps{
         script {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-            dockerImage.push("SNAPSHOT-$CURRENT_TIMESTAMP")
+            dockerImage.push("$CURRENT_TIMESTAMP")
           }
         }
       }
@@ -41,7 +41,7 @@ pipeline {
      stage("Release Type") {
             steps {
                 script {
-                    env.RELEASE_SCOPE = input message: 'User input required', ok: 'Type Of Release!',
+                    env.RELEASE_SCOPE = input message: 'User input required', ok: 'OK!',
                             parameters: [choice(name: 'RELEASE_SCOPE', choices: 'Fresh\nCanary', description: 'What is the release Type?')]
                 }
                 echo "${env.RELEASE_SCOPE}"
@@ -52,7 +52,8 @@ pipeline {
 	steps {
            script {
 	if (env.RELEASE_SCOPE == 'Fresh') {
-	    sh "kubectl delete deployment ctsops" 	
+	    sh "kubectl delete deployment ctsops"
+	    sh "sed -i 's/^{tag}/$CURRENT_TIMESTAMP/g' deploy.yaml" 
             sh "kubectl apply -f /var/lib/jenkins/workspace/my-bank-service_master/deploy.yaml"
         } else {
             echo 'I execute elsewhere'
