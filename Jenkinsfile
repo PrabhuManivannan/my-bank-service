@@ -44,7 +44,7 @@ pipeline {
                     ok "Yes, we can proceed."
                     submitter "Ashok,Prabhu"
                     parameters {
-                        string(name: 'Ashok', defaultValue: 'Admin', description: 'Deployment for latest image')
+                        string(name: 'Approver - Ashok', defaultValue: 'Text your comments', description: 'K8 Deployment for latest image')
                     }
                 }
                 steps {
