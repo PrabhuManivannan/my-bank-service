@@ -42,7 +42,7 @@ pipeline {
             steps {
                 script {
                     env.RELEASE_SCOPE = input message: 'User input required', ok: 'Type Of Release!',
-                            parameters: [choice(name: 'RELEASE_SCOPE', choices: 'Fresh\Canary', description: 'What is the release Type?')]
+                            parameters: [choice(name: 'RELEASE_SCOPE', choices: 'Fresh\nCanary', description: 'What is the release Type?')]
                 }
                 echo "${env.RELEASE_SCOPE}"
             }
