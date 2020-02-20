@@ -48,26 +48,11 @@ pipeline {
             }
         }
 
-    stage('Approval Request for K8 Deployment') {
-                input {
-                    message "Can we proceed to deploy the latest image into K8 ? If yes,please click OK to approve this request"
-                    ok "Yes, we can proceed."
-                    submitter "Ashok,Prabhu"
-                    parameters {
-                        string(name: 'Approver - Ashok', defaultValue: 'Text your comments', description: 'K8 Deployment for latest image')
-                    }
-                }
-                steps {
-                  			
-			sh "echo Deployment for SNAPSHOT-$CURRENT_TIMESTAMP is in progress..."
-                }
-       }
-	  
-	  stage('K8 Deployment'){
-		steps {
-                   	
-			 sh "echo Deployment for SNAPSHOT-$CURRENT_TIMESTAMP is completed.."
-                }  
-	  }
+    stage('K8s Deployment') {
+	if (env.RELEASE_SCOPE == 'Fresh') {
+            echo 'I only execute on the master branch'
+        } else {
+            echo 'I execute elsewhere'
+        }
    }
 }
