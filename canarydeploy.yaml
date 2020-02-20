@@ -5,15 +5,15 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: ctscan
+      app: ctsops
   replicas: 1
   template:
     metadata:
       labels:
-        app: ctscan
+        app: ctsops
     spec:
       containers:
-      - name: ctscan
+      - name: ctsops
         image: prabhu25/my-bank-service:@@{tag}
         ports:
         - containerPort: 80
