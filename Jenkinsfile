@@ -38,7 +38,24 @@ pipeline {
       }
     }
 
-   
-    
+    stage('Approval Request for K8 Deployment') {
+                input {
+                    message "Can we proceed to deploy into K8 ? If yes,please click OK to approve this request"
+                    ok "Yes, we can proceed."
+                    submitter "Ashok,Prabhu"
+                    parameters {
+                        string(name: 'Ashok', defaultValue: 'Admin', description: 'Deployment for latest image')
+                    }
+                }
+                steps {
+                    echo "Deployment for ($IMAGE:$VERSION) is in progress..."
+                }
+       }
+	  
+	  stage('K8 Deployment'){
+		steps {
+                    echo "Deployment for ("SNAPSHOT-$CURRENT_TIMESTAMP") is completed.."
+                }  
+	  }
    }
 }
