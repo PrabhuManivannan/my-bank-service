@@ -52,7 +52,11 @@ pipeline {
 	steps {
            script {
 	if (env.RELEASE_SCOPE == 'Fresh') {
-	    sh "kubectl delete deployment ctsops"
+		try{	
+	          sh "kubectl delete deployment ctsops"
+		}catch(Exception e){
+			
+		}
 	    sh "sed -i 's/@@{tag}/$CURRENT_TIMESTAMP/g' deploy.yaml" 
             sh "kubectl apply -f /var/lib/jenkins/workspace/my-bank-service_master/deploy.yaml"
         } else {
