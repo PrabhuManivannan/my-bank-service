@@ -62,12 +62,12 @@ pipeline {
         } else {
              sh "sed -i 's/@@{tag}/$CURRENT_TIMESTAMP/g' canarydeploy.yaml"
 	     sh "kubectl apply -f /var/lib/jenkins/workspace/my-bank-service_master/canarydeploy.yaml"
-        }
-	env.DEPLOY_SUCCESS = input message: 'User input required', ok: 'OK!',
-        parameters: [choice(name: 'DEPLOY_SUCCESS', choices: 'Yes\nNo', description: 'Is Deployment Success')]
-	if(env.DEPLOY_SUCCESS == 'Yes'){
+	     env.DEPLOY_SUCCESS = input message: 'User input required', ok: 'OK!',
+      	     parameters: [choice(name: 'DEPLOY_SUCCESS', choices: 'Yes\nNo', description: 'Is Deployment Success')]
+	     if(env.DEPLOY_SUCCESS == 'Yes'){
 		sh 'kubectl set image deployment/ctsops ctsops=prabhu25/my-bank-service:$CURRENT_TIMESTAMP'		   
-	}
+	     }
+        }
       }
     }
    }
