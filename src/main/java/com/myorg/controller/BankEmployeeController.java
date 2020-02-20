@@ -52,14 +52,16 @@ public class BankEmployeeController {
 		EmployeeProfileResponse response = new EmployeeProfileResponse();
 
 		String transactionID = "1234";
+		
 		log.debug("transactionID  is -> {}  ", transactionID);
 
 		response.setEmpId("1234");
 		response.setEmailId("xyz1@domain.com");
 		response.setFullName("Prabhu M");
 		response.setMobileNumber("989898989898");
-
 		users.add(response);
+		
+		System.out.println("New Request");
 		if (users.isEmpty()) {
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
