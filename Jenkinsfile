@@ -44,19 +44,19 @@ pipeline {
                     ok "Yes, we can proceed."
                     submitter "Ashok,Prabhu"
                     parameters {
-                        string(name: 'Ashok', defaultValue: 'Admin', description: 'Deployment for latest image ->  SNAPSHOT-$CURRENT_TIMESTAMP')
+                        string(name: 'Ashok', defaultValue: 'Admin', description: 'Deployment for latest image')
                     }
                 }
                 steps {
                   			
-			sh "echo Deployment for SNAPSHOT-$CURRENT_TIMESTAMP is in progress..."
+			sh "echo Deployment for SNAPSHOT-"${BUILD_TIMESTAMP}" is in progress..."
                 }
        }
 	  
 	  stage('K8 Deployment'){
 		steps {
                    	
-			 sh "echo Deployment for SNAPSHOT-$CURRENT_TIMESTAMP is completed.."
+			 sh "echo Deployment for SNAPSHOT-"${BUILD_TIMESTAMP}" is completed.."
                 }  
 	  }
    }
