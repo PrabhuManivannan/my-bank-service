@@ -40,7 +40,7 @@ pipeline {
 
     stage('Approval Request for K8 Deployment') {
                 input {
-                    message "Can we proceed to deploy the latest image ->  SNAPSHOT-"${BUILD_TIMESTAMP}" into K8 ? If yes,please click OK to approve this request"
+                    message "Can we proceed to deploy the latest image into K8 ? If yes,please click OK to approve this request"
                     ok "Yes, we can proceed."
                     submitter "Ashok,Prabhu"
                     parameters {
