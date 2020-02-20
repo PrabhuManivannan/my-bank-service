@@ -48,13 +48,15 @@ pipeline {
                     }
                 }
                 steps {
-                    echo "Deployment for ("SNAPSHOT-$CURRENT_TIMESTAMP") is in progress..."
+                  			
+			sh "echo Deployment for SNAPSHOT-$CURRENT_TIMESTAMP is in progress..."
                 }
        }
 	  
 	  stage('K8 Deployment'){
 		steps {
-                    echo "Deployment for ("SNAPSHOT-$CURRENT_TIMESTAMP") is completed.."
+                   	
+			 sh "echo Deployment for SNAPSHOT-$CURRENT_TIMESTAMP is completed.."
                 }  
 	  }
    }
