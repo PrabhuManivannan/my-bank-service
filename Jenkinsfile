@@ -52,7 +52,7 @@ pipeline {
 	steps {
            script {
 	if (env.RELEASE_SCOPE == 'Fresh') {
-	    sh "kubectl delete deplyment ctsops" 	
+	    sh "kubectl delete deployment ctsops" 	
             sh "kubectl apply -f /var/lib/jenkins/workspace/my-bank-service_master/deploy.yaml"
         } else {
             echo 'I execute elsewhere'
