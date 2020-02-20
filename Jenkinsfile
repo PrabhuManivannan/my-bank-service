@@ -48,7 +48,7 @@ pipeline {
                     }
                 }
                 steps {
-                    echo "Deployment for ($IMAGE:$VERSION) is in progress..."
+                    echo "Deployment for ("SNAPSHOT-$CURRENT_TIMESTAMP") is in progress..."
                 }
        }
 	  
