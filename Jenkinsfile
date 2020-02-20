@@ -1,23 +1,7 @@
 pipeline {
  agent any
 
-	
-   parameters {
-        choice(
-            name: 'CHOICE_1',
-            choices: 'choice_1\nchoice_2\nchoice_3',
-            description: 'CHOICE_1 description',
-        )
-
-        choice(
-            name: 'CHOICE_2',
-            choices: 'choice_1\nchoice_2\nchoice_3\nchoice_4\nchoice_5\nchoice_6\nchoice_7\nchoice_8\nchoice_9',
-            description: 'CHOICE_2 description',
-        )
-
-}
-	
-	  environment {
+	environment {
 	    registry = "prabhu25/my-bank-service"
 	    registryCredential = 'dockerhub'
 	    dockerImage = ''
@@ -53,6 +37,16 @@ pipeline {
         }
       }
     }
+	  
+     stage("foo") {
+            steps {
+                script {
+                    env.RELEASE_SCOPE = input message: 'User input required', ok: 'Release!',
+                            parameters: [choice(name: 'RELEASE_SCOPE', choices: 'patch\nminor\nmajor', description: 'What is the release scope?')]
+                }
+                echo "${env.RELEASE_SCOPE}"
+            }
+        }
 
     stage('Approval Request for K8 Deployment') {
                 input {
