@@ -49,11 +49,16 @@ pipeline {
         }
 
     stage('K8s Deployment') {
+	steps {
+           script {
 	if (env.RELEASE_SCOPE == 'Fresh') {
             echo 'I only execute on the master branch'
         } else {
             echo 'I execute elsewhere'
         }
+      }
+    }
+		
     }
    }
 }
