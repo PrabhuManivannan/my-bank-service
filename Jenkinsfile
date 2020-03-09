@@ -5,7 +5,7 @@ pipeline {
 	    registry = "prabhu25/my-bank-service"
 	    registryCredential = 'dockerhub'
 	    dockerImage = ''
-            CURRENT_TIMESTAMP= "${BUILD_TIMESTAMP}"
+            // CURRENT_TIMESTAMP= "${BUILD_TIMESTAMP}"
 	  }
  
   stages {
@@ -32,7 +32,8 @@ pipeline {
       steps{
         script {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-            dockerImage.push("$CURRENT_TIMESTAMP")
+           // dockerImage.push("$CURRENT_TIMESTAMP")
+		   dockerImage.push("SNAP_SHOT_TEST1")
           }
         }
       }
